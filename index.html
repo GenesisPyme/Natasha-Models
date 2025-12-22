@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Básico -->
+    <title>Natasha Models | Academia de Modelaje Profesional e Inclusivo</title>
+    <meta name="description" content="Natasha Models: Academia líder en formación de modelos profesionales. Cursos de pasarela, foto pose y marca personal con un enfoque 100% inclusivo.">
+    <meta name="keywords" content="academia de modelaje, curso de modelaje, Natasha Models, modelaje inclusivo, pasarela profesional, foto pose, Génesis Pyme">
+    <meta name="author" content="Génesis Pyme">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://genesispyme.github.io/natasha-models/">
+
+    <!-- Open Graph / Facebook / Instagram -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://genesispyme.github.io/natasha-models/">
+    <meta property="og:title" content="Natasha Models | Academia de Modelaje Profesional">
+    <meta property="og:description" content="Descubre tu potencial en la academia líder de modelaje profesional e inclusivo. Formación integral con Natasha y Veronica Bassos.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1200&q=630">
+
+    <!-- Twitter Card -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://genesispyme.github.io/natasha-models/">
+    <meta property="twitter:title" content="Natasha Models | Academia de Modelaje Profesional">
+    <meta property="twitter:description" content="Formación profesional para modelos. Inclusividad, elegancia y técnica de pasarela.">
+    <meta property="twitter:image" content="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1200&q=630">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- AOS Animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="icon" href="icon2.png" type="image/x-icon">
+    
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --dark-gold: #B8860B;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #ffffff;
+            color: #1a1a1a;
+        }
+        h1, h2, h3, .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        .bg-gold { background-color: var(--gold); }
+        .text-gold { color: var(--gold); }
+        .border-gold { border-color: var(--gold); }
+        
+        /* Navegación */
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--gold);
+            transition: width 0.3s;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+        .nav-link.active {
+            color: var(--gold);
+        }
+
+        /* Hero & Buttons */
+        .hero-gradient {
+            background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('https://images.unsplash.com/photo-1496747611176-843222e1e57c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .gold-button {
+            background: linear-gradient(45deg, var(--dark-gold), var(--gold));
+            transition: transform 0.3s, box-shadow 0.3s;
+            opacity: 1 !important;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .gold-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Galería & Carrusel */
+        .gallery-cover {
+            height: 500px;
+            border-radius: 2rem;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        .gallery-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1s ease;
+        }
+        .gallery-cover:hover img {
+            transform: scale(1.05);
+        }
+
+        .swiper-slide {
+            height: 350px;
+            border-radius: 1.5rem;
+            overflow: hidden;
+        }
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .swiper-pagination-bullet-active {
+            background: var(--gold) !important;
+        }
+
+        /* Animación de la flecha de scroll */
+        @keyframes bounce-slow {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        .scroll-indicator {
+            animation: bounce-slow 2s infinite;
+        }
+
+        /* Menu Móvil */
+        #mobileMenu {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        #mobileMenu.open {
+            max-height: 600px;
+            opacity: 1;
+            padding: 2rem 0;
+        }
+
+        nav {
+            transition: all 0.4s ease;
+        }
+
+        .floating-cta {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Navegación -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-black/95 text-white backdrop-blur-md border-b border-white/10 py-4" id="mainNav">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <img src="icon2.png" alt="Logo Natasha Models - Academia de Modelaje" class="h-10 w-auto brightness-110" onerror="this.src='https://via.placeholder.com/40x40?text=NM'">
+                <span class="text-lg md:text-xl font-serif tracking-widest uppercase">Natasha Models</span>
+            </div>
+            
+            <div class="hidden md:flex gap-8 items-center">
+                <a href="#inicio" class="nav-link text-sm uppercase tracking-wider active">Inicio</a>
+                <a href="#academia" class="nav-link text-sm uppercase tracking-wider">La Academia</a>
+                <a href="#cursos" class="nav-link text-sm uppercase tracking-wider">Cursos</a>
+                <a href="#directoras" class="nav-link text-sm uppercase tracking-wider">Directoras</a>
+                <a href="#eventos" class="nav-link text-sm uppercase tracking-wider">Eventos</a>
+                <a href="https://forms.google.com" target="_blank" class="gold-button px-6 py-2 rounded-full text-black font-bold text-xs uppercase tracking-tighter">Inscribirse</a>
+            </div>
+
+            <button class="md:hidden text-gold p-2" id="menuBtn" aria-label="Abrir menú">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+        
+        <div id="mobileMenu" class="md:hidden bg-black text-center space-y-6 border-t border-white/10">
+            <a href="#inicio" class="block text-lg">Inicio</a>
+            <a href="#academia" class="block text-lg">La Academia</a>
+            <a href="#cursos" class="block text-lg">Cursos</a>
+            <a href="#directoras" class="block text-lg">Directoras</a>
+            <a href="#eventos" class="block text-lg">Eventos</a>
+            <a href="https://forms.google.com" target="_blank" class="inline-block gold-button px-8 py-3 rounded-full text-black font-bold">Inscribirse</a>
+        </div>
+    </nav>
+
+    <!-- Hero con espacio para Logo y flecha de scroll -->
+    <section id="inicio" class="relative h-screen hero-gradient flex items-center justify-center text-center px-6 section">
+        <div data-aos="fade-up">
+            <div class="flex flex-col md:flex-row items-center justify-center gap-6 mb-6">
+                <img src="icon2.png" alt="Emblema Natasha Models" class="h-20 md:h-32 w-auto brightness-125 drop-shadow-[0_0_15px_rgba(212,175,55,0.3)]" onerror="this.style.display='none'">
+                <h1 class="text-6xl md:text-9xl text-white font-serif tracking-tighter">Natasha Models</h1>
+            </div>
+            <p class="text-gold uppercase tracking-[0.4em] mb-8 font-semibold text-xs md:text-sm">Bienvenida a la Excelencia</p>
+            <p class="text-white/80 max-w-2xl mx-auto text-base md:text-lg mb-10 leading-relaxed font-light">
+                Descubre tu potencial en la academia líder de modelaje profesional e inclusivo.
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center items-center">
+                <a href="#cursos" class="gold-button w-48 py-4 rounded-full text-black font-bold uppercase tracking-widest text-xs">Ver Cursos</a>
+                <a href="#academia" class="border border-white/30 hover:bg-white/10 text-white w-48 py-4 rounded-full transition uppercase tracking-widest text-xs backdrop-blur-sm">Conócenos</a>
+            </div>
+        </div>
+
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-gold scroll-indicator hidden md:block">
+            <a href="#academia" class="flex flex-col items-center gap-2 opacity-70 hover:opacity-100 transition-opacity" aria-label="Ir a la siguiente sección">
+                <span class="text-[10px] uppercase tracking-[0.3em] font-bold">Explorar</span>
+                <i data-lucide="chevron-down" class="w-8 h-8"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Estadísticas -->
+    <section class="bg-black py-16">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
+            <div data-aos="zoom-in"><h3 class="text-gold text-4xl font-serif">+500</h3><p class="text-[10px] uppercase tracking-widest opacity-50">Egresados</p></div>
+            <div data-aos="zoom-in" data-aos-delay="100"><h3 class="text-gold text-4xl font-serif">12</h3><p class="text-[10px] uppercase tracking-widest opacity-50">Años de Exp.</p></div>
+            <div data-aos="zoom-in" data-aos-delay="200"><h3 class="text-gold text-4xl font-serif">25+</h3><p class="text-[10px] uppercase tracking-widest opacity-50">Eventos Anuales</p></div>
+            <div data-aos="zoom-in" data-aos-delay="300"><h3 class="text-gold text-4xl font-serif">100%</h3><p class="text-[10px] uppercase tracking-widest opacity-50">Inclusivo</p></div>
+        </div>
+    </section>
+
+    <!-- La Academia -->
+    <section id="academia" class="py-24 px-6 max-w-7xl mx-auto section">
+        <div class="grid md:grid-cols-2 gap-16 items-center">
+            <div data-aos="fade-right">
+                <span class="text-gold font-bold uppercase tracking-widest text-xs mb-4 block">— Nuestra Esencia</span>
+                <h2 class="text-4xl md:text-5xl font-serif mb-6 leading-tight">Belleza sin etiquetas, Talento sin límites.</h2>
+                <p class="text-gray-600 mb-8 text-lg leading-relaxed">
+                    Creemos que el modelaje es una forma de expresión que no entiende de tallas ni géneros. Empoderamos a cada individuo con herramientas profesionales.
+                </p>
+                <div class="flex items-center gap-4 bg-gray-50 p-6 rounded-2xl border border-gray-100">
+                    <div class="p-3 bg-gold/10 rounded-full text-gold"><i data-lucide="shield-check"></i></div>
+                    <p class="font-semibold text-gray-800">Formación 100% Inclusiva y Personalizada</p>
+                </div>
+            </div>
+            <div class="relative" data-aos="fade-left">
+                <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80" alt="Modelaje inclusivo en Natasha Models" class="rounded-[2rem] shadow-2xl w-full h-[550px] object-cover">
+                <div class="absolute -bottom-8 -left-8 bg-black text-white p-8 rounded-[1.5rem] hidden md:block">
+                    <p class="text-gold font-serif text-2xl">Líderes en el Mercado</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cursos -->
+    <section id="cursos" class="py-24 bg-gray-50 section">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-serif mb-4">Formación Profesional</h2>
+                <div class="h-1 w-20 bg-gold mx-auto"></div>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-10 rounded-3xl shadow-sm border hover:border-gold/50 transition duration-500" data-aos="fade-up">
+                    <i data-lucide="layers" class="text-gold mb-6 w-10 h-10" aria-hidden="true"></i>
+                    <h3 class="text-2xl font-serif mb-4">Pasarela Pro</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed mb-6">Técnicas avanzadas de desplazamiento, pivot y manejo de escena para desfiles de alta gama.</p>
+                    <a href="#" class="text-gold font-bold text-sm tracking-widest hover:underline uppercase">Detalles →</a>
+                </div>
+                <div class="bg-black text-white p-10 rounded-3xl shadow-xl md:scale-105" data-aos="fade-up" data-aos-delay="100">
+                    <i data-lucide="camera" class="text-gold mb-6 w-10 h-10" aria-hidden="true"></i>
+                    <h3 class="text-2xl font-serif mb-4">Foto Pose</h3>
+                    <p class="text-sm text-white/50 leading-relaxed mb-8">Domina tu imagen ante la cámara, aprende ángulos y gestión de expresiones para editoriales.</p>
+                    <a href="https://forms.google.com" target="_blank" class="gold-button w-full py-4 rounded-full text-black font-bold uppercase text-xs">Inscribirse</a>
+                </div>
+                <div class="bg-white p-10 rounded-3xl shadow-sm border hover:border-gold/50 transition duration-500" data-aos="fade-up" data-aos-delay="200">
+                    <i data-lucide="star" class="text-gold mb-6 w-10 h-10" aria-hidden="true"></i>
+                    <h3 class="text-2xl font-serif mb-4">Marca Personal</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed mb-6">Protocolo, oratoria y gestión de redes sociales para convertirte en un referente de la industria.</p>
+                    <a href="#" class="text-gold font-bold text-sm tracking-widest hover:underline uppercase">Detalles →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Directoras -->
+    <section id="directoras" class="py-24 px-6 max-w-7xl mx-auto section">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-serif mb-4">Nuestro Staff</h2>
+            <p class="text-gray-400 uppercase tracking-widest text-[10px]">Las mentes maestras del proyecto</p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-12">
+            <article class="group relative overflow-hidden rounded-[2.5rem]" data-aos="fade-right">
+                <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=800&q=80" alt="Natasha - Fundadora y Dueña de Natasha Models" class="w-full h-[450px] object-cover grayscale group-hover:grayscale-0 transition duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent p-10 flex flex-col justify-end">
+                    <p class="text-gold font-bold text-xs uppercase mb-2">Fundadora & Dueña</p>
+                    <h3 class="text-3xl text-white font-serif mb-4">Natasha</h3>
+                    <p class="text-white/60 text-sm max-w-sm">Visión inclusiva y liderazgo en la industria de la moda contemporánea.</p>
+                </div>
+            </article>
+            <article class="group relative overflow-hidden rounded-[2.5rem]" data-aos="fade-left">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80" alt="Veronica Bassos - Profesora Principal de Natasha Models" class="w-full h-[450px] object-cover grayscale group-hover:grayscale-0 transition duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent p-10 flex flex-col justify-end">
+                    <p class="text-gold font-bold text-xs uppercase mb-2">Profesora Principal</p>
+                    <h3 class="text-3xl text-white font-serif mb-4">Veronica Bassos</h3>
+                    <p class="text-white/60 text-sm max-w-sm">Excelencia académica y formación técnica de alto rendimiento.</p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Eventos - Portada + Carrusel -->
+    <section id="eventos" class="py-24 bg-black text-white section overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+                <div>
+                    <span class="text-gold font-bold uppercase tracking-[0.3em] text-[10px] block mb-4">Portfolio</span>
+                    <h2 class="text-4xl md:text-5xl font-serif">Eventos & Backstage</h2>
+                </div>
+                <p class="text-white/40 text-sm max-w-md">Un recorrido visual por nuestras participaciones en pasarelas, canales de televisión y producciones internacionales.</p>
+            </div>
+
+            <!-- Cover Image (Portada) -->
+            <div class="gallery-cover" data-aos="zoom-out">
+                <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1200&q=80" alt="Pasarela destacada Fashion Week NM">
+                <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                    <div class="text-center">
+                        <h4 class="text-gold font-serif text-3xl md:text-5xl mb-2">Fashion Week NM</h4>
+                        <p class="uppercase tracking-widest text-[10px] font-bold">Evento Destacado del Año</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carrusel Swiper -->
+            <div class="swiper mySwiper" data-aos="fade-up">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=600&q=80" alt="Backstage Natasha Models 1"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=600&q=80" alt="Backstage Natasha Models 2"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=600&q=80" alt="Backstage Natasha Models 3"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=600&q=80" alt="Backstage Natasha Models 4"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80" alt="Backstage Natasha Models 5"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80" alt="Backstage Natasha Models 6"></div>
+                </div>
+                <div class="swiper-pagination mt-10"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ubicación -->
+    <section class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-16 items-center">
+            <div>
+                <h2 class="text-4xl font-serif mb-8">Nuestra Sede</h2>
+                <div class="space-y-6">
+                    <div class="flex gap-4 items-start"><i data-lucide="map-pin" class="text-gold" aria-hidden="true"></i><p class="text-gray-600 text-sm">Av. de la Moda 123, Distrito de Diseño, Ciudad Capital.</p></div>
+                    <div class="flex gap-4 items-start"><i data-lucide="phone" class="text-gold" aria-hidden="true"></i><p class="text-gray-600 text-sm">+54 11 4567 8900</p></div>
+                    <div class="flex gap-4 items-start"><i data-lucide="mail" class="text-gold" aria-hidden="true"></i><p class="text-gray-600 text-sm">info@natashamodels.com</p></div>
+                </div>
+            </div>
+            <div class="bg-gray-100 rounded-[2rem] h-[400px] flex items-center justify-center text-gray-400 italic">
+                [Mapa de ubicación Natasha Models]
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Profesional Mejorado -->
+    <footer class="bg-black text-white pt-20 pb-10 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+                <div class="space-y-6">
+                    <img src="icon2.png" alt="Logo Natasha Models footer" class="h-10 w-auto brightness-110">
+                    <p class="text-white/40 text-xs leading-relaxed">Referentes en la formación de modelos profesionales con un enfoque humano e integrador.</p>
+                </div>
+                <div>
+                    <h5 class="text-gold font-bold uppercase tracking-widest text-[10px] mb-6 underline decoration-gold/20 underline-offset-8">Links</h5>
+                    <ul class="space-y-4 text-[11px] text-white/50 uppercase tracking-widest">
+                        <li><a href="#inicio" class="hover:text-gold transition">Inicio</a></li>
+                        <li><a href="#academia" class="hover:text-gold transition">Academia</a></li>
+                        <li><a href="#cursos" class="hover:text-gold transition">Cursos</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-gold font-bold uppercase tracking-widest text-[10px] mb-6 underline decoration-gold/20 underline-offset-8">Legal</h5>
+                    <ul class="space-y-4 text-[11px] text-white/50 uppercase tracking-widest">
+                        <li><a href="#" class="hover:text-gold transition">Privacidad</a></li>
+                        <li><a href="#" class="hover:text-gold transition">Términos</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-gold font-bold uppercase tracking-widest text-[10px] mb-6 underline decoration-gold/20 underline-offset-8">Contacto</h5>
+                    <a href="mailto:info@natashamodels.com" class="block text-center border border-gold/30 py-3 rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-gold hover:text-black transition">Email Support</a>
+                </div>
+            </div>
+            <div class="pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
+                <p class="text-[10px] text-white/30 uppercase tracking-[0.2em]">&copy; 2024 Natasha Models Academy.</p>
+                
+                <!-- Crédito a Génesis Pyme -->
+                <div class="flex items-center gap-2 group">
+                    <span class="text-[10px] text-white/20 uppercase tracking-widest">Desarrollado por</span>
+                    <a href="https://github.com/GenesisPyme" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-4 py-1.5 bg-white/5 rounded-full border border-white/10 hover:border-gold/50 transition-all">
+                        <span class="text-[10px] font-extrabold text-white tracking-tighter">Génesis Pyme</span>
+                        <div class="w-1.5 h-1.5 bg-gold rounded-full animate-pulse"></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón Flotante CTA -->
+    <div class="floating-cta">
+        <a href="https://forms.google.com" target="_blank" class="gold-button flex items-center gap-2 px-6 py-4 rounded-full text-black font-bold shadow-2xl" aria-label="Abrir formulario de inscripción">
+            <i data-lucide="file-text" class="w-5 h-5"></i>
+            <span class="hidden md:inline uppercase text-[10px] tracking-widest">Inscríbete Hoy</span>
+        </a>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        lucide.createIcons();
+        AOS.init({ duration: 1000, once: true, offset: 50 });
+
+        // Swiper Initialization
+        const swiper = new Swiper(".mySwiper", {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            pagination: { el: ".swiper-pagination", clickable: true },
+            breakpoints: {
+                640: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 },
+                1280: { slidesPerView: 4 }
+            },
+            autoplay: { delay: 3000, disableOnInteraction: false }
+        });
+
+        // Menu Toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const toggleMenu = (close = false) => {
+            if (close) mobileMenu.classList.remove('open');
+            else mobileMenu.classList.toggle('open');
+        };
+
+        menuBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleMenu(); });
+        document.addEventListener('click', (e) => { if(!mobileMenu.contains(e.target)) toggleMenu(true); });
+
+        // Scroll Logic & Scrollspy
+        const nav = document.getElementById('mainNav');
+        const sections = document.querySelectorAll('.section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        const updateNav = () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('py-2', 'bg-black', 'shadow-2xl');
+                nav.classList.remove('py-4');
+            } else {
+                nav.classList.remove('py-2', 'bg-black', 'shadow-2xl');
+                nav.classList.add('py-4');
+            }
+
+            let current = "";
+            sections.forEach(s => {
+                if (window.pageYOffset >= s.offsetTop - 120) current = s.getAttribute('id');
+            });
+            navLinks.forEach(l => {
+                l.classList.remove('active');
+                if (l.getAttribute('href').includes(current)) l.classList.add('active');
+            });
+        };
+
+        window.addEventListener('scroll', updateNav);
+        window.addEventListener('load', updateNav);
+    </script>
+</body>
+</html>
