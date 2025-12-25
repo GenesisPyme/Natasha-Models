@@ -19,13 +19,6 @@
     <meta property="og:description" content="Descubre tu potencial en la academia líder de modelaje profesional e inclusivo. Formación integral con Natasha y Veronica Bassos.">
     <meta property="og:image" content="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1200&q=630">
 
-    <!-- Twitter Card -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://genesispyme.github.io/natasha-models/">
-    <meta property="twitter:title" content="Natasha Models | Academia de Modelaje Profesional">
-    <meta property="twitter:description" content="Formación profesional para modelos. Inclusividad, elegancia y técnica de pasarela.">
-    <meta property="twitter:image" content="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1200&q=630">
-
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
@@ -82,7 +75,7 @@
 
         /* Hero & Buttons */
         .hero-gradient {
-            background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('https://images.unsplash.com/photo-1496747611176-843222e1e57c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('img/f30.jpeg');
             background-size: cover;
             background-position: center;
         }
@@ -107,6 +100,7 @@
             overflow: hidden;
             position: relative;
             margin-bottom: 2rem;
+            cursor: pointer;
         }
         .gallery-cover img {
             width: 100%;
@@ -122,11 +116,16 @@
             height: 350px;
             border-radius: 1.5rem;
             overflow: hidden;
+            cursor: pointer;
         }
         .swiper-slide img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .swiper-slide:hover img {
+            transform: scale(1.1);
         }
         .swiper-pagination-bullet-active {
             background: var(--gold) !important;
@@ -165,6 +164,51 @@
             right: 2rem;
             z-index: 100;
         }
+
+        /* Lightbox Custom Styles */
+        #lightbox, #courseModal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(8px);
+        }
+        #lightbox.active, #courseModal.active {
+            display: flex;
+        }
+        .lightbox-img {
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 0.5rem;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            transform: scale(0.9);
+            transition: transform 0.3s ease-out;
+        }
+        #lightbox.active .lightbox-img {
+            transform: scale(1);
+        }
+
+        /* Modal de Cursos */
+        .modal-content {
+            background: white;
+            width: 95%;
+            max-width: 1000px;
+            max-height: 90vh;
+            border-radius: 2rem;
+            overflow-y: auto;
+            position: relative;
+            transform: translateY(20px);
+            transition: transform 0.4s ease;
+        }
+        #courseModal.active .modal-content {
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body class="overflow-x-hidden">
@@ -173,7 +217,7 @@
     <nav class="fixed top-0 left-0 w-full z-50 bg-black/95 text-white backdrop-blur-md border-b border-white/10 py-4" id="mainNav">
         <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
             <div class="flex items-center gap-4">
-                <img src="icon2.png" alt="Logo Natasha Models - Academia de Modelaje" class="h-10 w-auto brightness-110" onerror="this.src='https://via.placeholder.com/40x40?text=NM'">
+                <img src="icon2.png" alt="Logo Natasha Models" class="h-10 w-auto brightness-110" onerror="this.src='https://via.placeholder.com/40x40?text=NM'">
                 <span class="text-lg md:text-xl font-serif tracking-widest uppercase">Natasha Models</span>
             </div>
             
@@ -201,7 +245,7 @@
         </div>
     </nav>
 
-    <!-- Hero con espacio para Logo y flecha de scroll -->
+    <!-- Hero -->
     <section id="inicio" class="relative h-screen hero-gradient flex items-center justify-center text-center px-6 section">
         <div data-aos="fade-up">
             <div class="flex flex-col md:flex-row items-center justify-center gap-6 mb-6">
@@ -219,8 +263,7 @@
         </div>
 
         <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-gold scroll-indicator hidden md:block">
-            <a href="#academia" class="flex flex-col items-center gap-2 opacity-70 hover:opacity-100 transition-opacity" aria-label="Ir a la siguiente sección">
-                <span class="text-[10px] uppercase tracking-[0.3em] font-bold">Explorar</span>
+            <a href="#academia" class="flex flex-col items-center gap-2 opacity-70 hover:opacity-100 transition-opacity">
                 <i data-lucide="chevron-down" class="w-8 h-8"></i>
             </a>
         </div>
@@ -251,7 +294,7 @@
                 </div>
             </div>
             <div class="relative" data-aos="fade-left">
-                <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80" alt="Modelaje inclusivo en Natasha Models" class="rounded-[2rem] shadow-2xl w-full h-[550px] object-cover">
+                <img src="img/f42.jpeg" alt="Nuestros egresados y comunidad" class="rounded-[2rem] shadow-2xl w-full h-[550px] object-cover solo-view cursor-pointer">
                 <div class="absolute -bottom-8 -left-8 bg-black text-white p-8 rounded-[1.5rem] hidden md:block">
                     <p class="text-gold font-serif text-2xl">Líderes en el Mercado</p>
                 </div>
@@ -260,62 +303,111 @@
     </section>
 
     <!-- Cursos -->
-    <section id="cursos" class="py-24 bg-gray-50 section">
+    <section id="cursos" class="py-24 bg-gray-50 section overflow-hidden">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
+            <div class="text-center mb-16" data-aos="fade-down">
                 <h2 class="text-4xl font-serif mb-4">Formación Profesional</h2>
                 <div class="h-1 w-20 bg-gold mx-auto"></div>
             </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white p-10 rounded-3xl shadow-sm border hover:border-gold/50 transition duration-500" data-aos="fade-up">
-                    <i data-lucide="layers" class="text-gold mb-6 w-10 h-10" aria-hidden="true"></i>
+
+            <div class="grid md:grid-cols-3 gap-8 items-center">
+                <!-- Card 1 -->
+                <div class="group bg-white p-10 rounded-3xl shadow-sm border border-transparent hover:border-gold/30 hover:-translate-y-4 hover:shadow-2xl transition-all duration-500 ease-out" data-aos="fade-right">
+                    <div class="bg-gray-50 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-gold/10 transition-colors duration-500">
+                        <i data-lucide="layers" class="text-gold w-10 h-10 group-hover:scale-110 transition-transform duration-500"></i>
+                    </div>
                     <h3 class="text-2xl font-serif mb-4">Pasarela Pro</h3>
                     <p class="text-sm text-gray-500 leading-relaxed mb-6">Técnicas avanzadas de desplazamiento, pivot y manejo de escena para desfiles de alta gama.</p>
-                    <a href="#" class="text-gold font-bold text-sm tracking-widest hover:underline uppercase">Detalles →</a>
+                    <button onclick="openCoursePanel('pasarela')" class="inline-block text-gold font-bold text-sm tracking-widest hover:translate-x-2 transition-transform duration-300 uppercase">Detalles →</button>
                 </div>
-                <div class="bg-black text-white p-10 rounded-3xl shadow-xl md:scale-105" data-aos="fade-up" data-aos-delay="100">
-                    <i data-lucide="camera" class="text-gold mb-6 w-10 h-10" aria-hidden="true"></i>
+                <!-- Card Destacada -->
+                <div class="group bg-black text-white p-10 rounded-3xl shadow-xl md:scale-110 relative z-10 hover:-translate-y-4 hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)] transition-all duration-500 ease-out" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-white/10 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-gold/20 transition-colors duration-500">
+                        <i data-lucide="camera" class="text-gold w-10 h-10 group-hover:rotate-12 transition-transform duration-500"></i>
+                    </div>
                     <h3 class="text-2xl font-serif mb-4">Foto Pose</h3>
-                    <p class="text-sm text-white/50 leading-relaxed mb-8">Domina tu imagen ante la cámara, aprende ángulos y gestión de expresiones para editoriales.</p>
-                    <a href="https://forms.google.com" target="_blank" class="gold-button w-full py-4 rounded-full text-black font-bold uppercase text-xs">Inscribirse</a>
+                    <p class="text-sm text-white/70 leading-relaxed mb-8">Domina tu imagen ante la cámara, aprende ángulos y gestión de expresiones para editoriales.</p>
+                    <button onclick="openCoursePanel('fotopose')" class="gold-button block w-full py-4 rounded-full text-black font-bold uppercase text-xs text-center shadow-lg hover:brightness-110 transition-all">Saber más</button>
                 </div>
-                <div class="bg-white p-10 rounded-3xl shadow-sm border hover:border-gold/50 transition duration-500" data-aos="fade-up" data-aos-delay="200">
-                    <i data-lucide="star" class="text-gold mb-6 w-10 h-10" aria-hidden="true"></i>
+                <!-- Card 3 -->
+                <div class="group bg-white p-10 rounded-3xl shadow-sm border border-transparent hover:border-gold/30 hover:-translate-y-4 hover:shadow-2xl transition-all duration-500 ease-out" data-aos="fade-left" data-aos-delay="200">
+                    <div class="bg-gray-50 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-gold/10 transition-colors duration-500">
+                        <i data-lucide="star" class="text-gold w-10 h-10 group-hover:scale-110 transition-transform duration-500"></i>
+                    </div>
                     <h3 class="text-2xl font-serif mb-4">Marca Personal</h3>
                     <p class="text-sm text-gray-500 leading-relaxed mb-6">Protocolo, oratoria y gestión de redes sociales para convertirte en un referente de la industria.</p>
-                    <a href="#" class="text-gold font-bold text-sm tracking-widest hover:underline uppercase">Detalles →</a>
+                    <button onclick="openCoursePanel('marca')" class="inline-block text-gold font-bold text-sm tracking-widest hover:translate-x-2 transition-transform duration-300 uppercase">Detalles →</button>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Directoras -->
-    <section id="directoras" class="py-24 px-6 max-w-7xl mx-auto section">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl font-serif mb-4">Nuestro Staff</h2>
-            <p class="text-gray-400 uppercase tracking-widest text-[10px]">Las mentes maestras del proyecto</p>
-        </div>
-        <div class="grid md:grid-cols-2 gap-12">
-            <article class="group relative overflow-hidden rounded-[2.5rem]" data-aos="fade-right">
-                <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=800&q=80" alt="Natasha - Fundadora y Dueña de Natasha Models" class="w-full h-[450px] object-cover grayscale group-hover:grayscale-0 transition duration-700">
-                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent p-10 flex flex-col justify-end">
-                    <p class="text-gold font-bold text-xs uppercase mb-2">Fundadora & Dueña</p>
-                    <h3 class="text-3xl text-white font-serif mb-4">Natasha</h3>
-                    <p class="text-white/60 text-sm max-w-sm">Visión inclusiva y liderazgo en la industria de la moda contemporánea.</p>
-                </div>
-            </article>
-            <article class="group relative overflow-hidden rounded-[2.5rem]" data-aos="fade-left">
-                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80" alt="Veronica Bassos - Profesora Principal de Natasha Models" class="w-full h-[450px] object-cover grayscale group-hover:grayscale-0 transition duration-700">
-                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent p-10 flex flex-col justify-end">
-                    <p class="text-gold font-bold text-xs uppercase mb-2">Profesora Principal</p>
-                    <h3 class="text-3xl text-white font-serif mb-4">Veronica Bassos</h3>
-                    <p class="text-white/60 text-sm max-w-sm">Excelencia académica y formación técnica de alto rendimiento.</p>
-                </div>
-            </article>
-        </div>
-    </section>
+   <section id="directoras" class="py-24 px-6 max-w-7xl mx-auto section">
+  <div class="text-center mb-16">
+    <h2 class="text-4xl font-serif mb-4">Nuestro Staff</h2>
+    <p class="text-gray-400 uppercase tracking-widest text-[10px]">Las mentes maestras del proyecto</p>
+  </div>
 
-    <!-- Eventos - Portada + Carrusel -->
+  <div class="grid md:grid-cols-2 gap-12">
+    <!-- Natasha -->
+    <article class="group relative overflow-hidden rounded-[2.5rem] shadow-[0_25px_60px_rgba(0,0,0,0.12)]" data-aos="fade-right">
+      <img src="img/natasha.jpeg" alt="Natasha Vila de Basso"
+        class="w-full h-[450px] object-cover grayscale group-hover:grayscale-0 transition duration-700 solo-view cursor-pointer">
+
+      <!-- Overlay más legible -->
+      <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/45 to-transparent"></div>
+
+      <div class="absolute inset-0 p-10 flex flex-col justify-end">
+        <!-- Chip de rol -->
+        <p class="text-gold font-bold text-[11px] uppercase tracking-[0.25em] mb-2 drop-shadow">
+          Directora General & Administración
+        </p>
+
+        <h3 class="text-3xl text-white font-serif mb-3 drop-shadow-[0_8px_22px_rgba(0,0,0,0.65)]">
+          Natasha Vila de Basso
+        </h3>
+
+        <!-- Panel detrás del texto (mejor lectura) -->
+        <div class="bg-black/35 backdrop-blur-sm border border-white/10 rounded-2xl p-4 max-w-md">
+          <p class="text-white/85 text-sm leading-relaxed drop-shadow">
+            Representante de la academia y responsable de la gestión general.
+            Supervisa la administración y acompaña el proceso formativo de los alumnos.
+          </p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Veronica -->
+    <article class="group relative overflow-hidden rounded-[2.5rem] shadow-[0_25px_60px_rgba(0,0,0,0.12)]" data-aos="fade-left">
+      <img src="img/f10.jpeg" alt="Veronica Ayelen Basso"
+        class="w-full h-[450px] object-cover grayscale group-hover:grayscale-0 transition duration-700 solo-view cursor-pointer">
+
+      <!-- Overlay más legible -->
+      <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/45 to-transparent"></div>
+
+      <div class="absolute inset-0 p-10 flex flex-col justify-end">
+        <p class="text-gold font-bold text-[11px] uppercase tracking-[0.25em] mb-2 drop-shadow">
+          Fundadora & Directora Académica
+        </p>
+
+        <h3 class="text-3xl text-white font-serif mb-3 drop-shadow-[0_8px_22px_rgba(0,0,0,0.65)]">
+          Veronica Ayelen Basso
+        </h3>
+
+        <div class="bg-black/35 backdrop-blur-sm border border-white/10 rounded-2xl p-4 max-w-md">
+          <p class="text-white/85 text-sm leading-relaxed drop-shadow">
+            Fundadora de la academia y líder del programa académico.
+            Coordina los cursos, la planificación y la calidad de la formación profesional.
+          </p>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+
+    <!-- Eventos - Carrusel con Zoom -->
     <section id="eventos" class="py-24 bg-black text-white section overflow-hidden">
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
@@ -326,9 +418,9 @@
                 <p class="text-white/40 text-sm max-w-md">Un recorrido visual por nuestras participaciones en pasarelas, canales de televisión y producciones internacionales.</p>
             </div>
 
-            <!-- Cover Image (Portada) -->
-            <div class="gallery-cover" data-aos="zoom-out">
-                <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1200&q=80" alt="Pasarela destacada Fashion Week NM">
+            <!-- Cover Image (Clickable for Zoom) -->
+            <div class="gallery-cover" data-aos="zoom-out" onclick="openLightbox(0)">
+                <img src="img/f26.jpeg" alt="Pasarela destacada" class="gallery-item-main">
                 <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
                     <div class="text-center">
                         <h4 class="text-gold font-serif text-3xl md:text-5xl mb-2">Fashion Week NM</h4>
@@ -339,42 +431,67 @@
 
             <!-- Carrusel Swiper -->
             <div class="swiper mySwiper" data-aos="fade-up">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=600&q=80" alt="Backstage Natasha Models 1"></div>
-                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=600&q=80" alt="Backstage Natasha Models 2"></div>
-                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=600&q=80" alt="Backstage Natasha Models 3"></div>
-                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=600&q=80" alt="Backstage Natasha Models 4"></div>
-                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80" alt="Backstage Natasha Models 5"></div>
-                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80" alt="Backstage Natasha Models 6"></div>
+                <div class="swiper-wrapper" id="swiperGallery">
+                    <div class="swiper-slide"><img src="img/f29.jpeg" alt="f29" class="gallery-item"></div>
+                    <div class="swiper-slide"><img src="img/f30.jpeg" alt="f30" class="gallery-item"></div>
+                    <div class="swiper-slide"><img src="img/f31.jpeg" alt="f31" class="gallery-item"></div>
+                    <div class="swiper-slide"><img src="img/f32.jpeg" alt="f32" class="gallery-item"></div>
+                    <div class="swiper-slide"><img src="img/f33.jpeg" alt="f33" class="gallery-item"></div>
+                    <div class="swiper-slide"><img src="img/f34.jpeg" alt="f34" class="gallery-item"></div>
+                    <div class="swiper-slide"><img src="img/f35.jpeg" alt="f35" class="gallery-item"></div>
+                    <div class="swiper-slide"><img src="img/f22.jpeg" alt="f22" class="gallery-item"></div>
+                    <div class="swiper-slide"><img src="img/f23.jpeg" alt="f23" class="gallery-item"></div>
+                    <div class="swiper-slide"><img src="img/f24.jpeg" alt="f24" class="gallery-item"></div>
+                    <div class="swiper-slide"><img src="img/f25.jpeg" alt="f25" class="gallery-item"></div>
+                    <div class="swiper-slide"><img src="img/f26.jpeg" alt="f26" class="gallery-item"></div>
+                    <div class="swiper-slide"><img src="img/f27.jpeg" alt="f27" class="gallery-item"></div>
+                    <div class="swiper-slide"><img src="img/f28.jpeg" alt="f28" class="gallery-item"></div>
+                    <div class="swiper-slide"><img src="img/f37.jpeg" alt="f37" class="gallery-item"></div>
+                    <div class="swiper-slide"><img src="img/f38.jpeg" alt="f38" class="gallery-item"></div>
+                    <div class="swiper-slide"><img src="img/f20.jpeg" alt="f41" class="gallery-item"></div>
+                    <div class="swiper-slide"><img src="img/f42.jpeg" alt="f42" class="gallery-item"></div>
+                    <div class="swiper-slide"><img src="img/f44.jpeg" alt="f44" class="gallery-item"></div>
+                    <div class="swiper-slide"><img src="img/f49.jpeg" alt="f49" class="gallery-item"></div>
+                    <div class="swiper-slide"><img src="img/1.jpeg" alt="f50" class="gallery-item"></div>
+                    <div class="swiper-slide"><img src="img/f18.jpeg" alt="f50" class="gallery-item"></div>
                 </div>
                 <div class="swiper-pagination mt-10"></div>
             </div>
         </div>
     </section>
 
-    <!-- Ubicación -->
+    <!-- Sede -->
     <section class="py-24 px-6 max-w-7xl mx-auto">
         <div class="grid md:grid-cols-2 gap-16 items-center">
             <div>
                 <h2 class="text-4xl font-serif mb-8">Nuestra Sede</h2>
                 <div class="space-y-6">
-                    <div class="flex gap-4 items-start"><i data-lucide="map-pin" class="text-gold" aria-hidden="true"></i><p class="text-gray-600 text-sm">Av. de la Moda 123, Distrito de Diseño, Ciudad Capital.</p></div>
-                    <div class="flex gap-4 items-start"><i data-lucide="phone" class="text-gold" aria-hidden="true"></i><p class="text-gray-600 text-sm">+54 11 4567 8900</p></div>
-                    <div class="flex gap-4 items-start"><i data-lucide="mail" class="text-gold" aria-hidden="true"></i><p class="text-gray-600 text-sm">info@natashamodels.com</p></div>
+                    <div class="flex gap-4 items-start">
+                        <i data-lucide="map-pin" class="text-gold"></i>
+                        <p class="text-gray-600 text-sm">Av. de la Moda 123, Distrito de Diseño, Ciudad Capital.</p>
+                    </div>
+                    <div class="flex gap-4 items-start">
+                        <i data-lucide="phone" class="text-gold"></i>
+                        <p class="text-gray-600 text-sm"><a href="tel:+542645233264" class="hover:text-gold transition-colors">264 523 3264</a></p>
+                    </div>
+                    <div class="flex gap-4 items-start">
+                        <i data-lucide="mail" class="text-gold"></i>
+                        <p class="text-gray-600 text-sm"><a href="mailto:natashamodelssj@gmail.com" class="hover:text-gold transition-colors">natashamodelssj@gmail.com</a></p>
+                    </div>
                 </div>
             </div>
-            <div class="bg-gray-100 rounded-[2rem] h-[400px] flex items-center justify-center text-gray-400 italic">
+            <div class="bg-gray-100 rounded-[2rem] h-[400px] flex items-center justify-center text-gray-400 italic shadow-inner">
                 [Mapa de ubicación Natasha Models]
             </div>
         </div>
     </section>
 
-    <!-- Footer Profesional Mejorado -->
+    <!-- Footer -->
     <footer class="bg-black text-white pt-20 pb-10 border-t border-white/5">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
                 <div class="space-y-6">
-                    <img src="icon2.png" alt="Logo Natasha Models footer" class="h-10 w-auto brightness-110">
+                    <img src="icon2.png" alt="Logo" class="h-10 w-auto brightness-110">
                     <p class="text-white/40 text-xs leading-relaxed">Referentes en la formación de modelos profesionales con un enfoque humano e integrador.</p>
                 </div>
                 <div>
@@ -394,17 +511,15 @@
                 </div>
                 <div>
                     <h5 class="text-gold font-bold uppercase tracking-widest text-[10px] mb-6 underline decoration-gold/20 underline-offset-8">Contacto</h5>
-                    <a href="mailto:info@natashamodels.com" class="block text-center border border-gold/30 py-3 rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-gold hover:text-black transition">Email Support</a>
+                    <a href="mailto:natashamodelssj@gmail.com" class="block text-center border border-gold/30 py-3 rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-gold hover:text-black transition">Email Support</a>
                 </div>
             </div>
-            <div class="pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
-                <p class="text-[10px] text-white/30 uppercase tracking-[0.2em]">&copy; 2024 Natasha Models Academy.</p>
-                
-                <!-- Crédito a Génesis Pyme -->
+            <div class="pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] text-white/30 uppercase tracking-[0.2em]">
+                <p>&copy; 2024 Natasha Models Academy.</p>
                 <div class="flex items-center gap-2 group">
-                    <span class="text-[10px] text-white/20 uppercase tracking-widest">Desarrollado por</span>
-                    <a href="https://github.com/GenesisPyme" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-4 py-1.5 bg-white/5 rounded-full border border-white/10 hover:border-gold/50 transition-all">
-                        <span class="text-[10px] font-extrabold text-white tracking-tighter">Génesis Pyme</span>
+                    <span class="text-white">Desarrollado por</span>
+                    <a href="https://genesispyme.github.io/Genesis/" target="_blank" class="flex items-center gap-2 px-4 py-1.5 bg-white/5 rounded-full border border-white/10 hover:border-gold/50 transition-all">
+                        <span class="font-extrabold text-white tracking-tighter">Génesis Pyme</span>
                         <div class="w-1.5 h-1.5 bg-gold rounded-full animate-pulse"></div>
                     </a>
                 </div>
@@ -412,12 +527,46 @@
         </div>
     </footer>
 
-    <!-- Botón Flotante CTA -->
+    <!-- Botón Flotante -->
     <div class="floating-cta">
-        <a href="https://forms.google.com" target="_blank" class="gold-button flex items-center gap-2 px-6 py-4 rounded-full text-black font-bold shadow-2xl" aria-label="Abrir formulario de inscripción">
+        <a href="https://forms.gle/JkVQZX1Ur2BBmyug8" target="_blank" class="gold-button flex items-center gap-2 px-6 py-4 rounded-full text-black font-bold shadow-2xl">
             <i data-lucide="file-text" class="w-5 h-5"></i>
             <span class="hidden md:inline uppercase text-[10px] tracking-widest">Inscríbete Hoy</span>
         </a>
+    </div>
+
+    <!-- LIGHTBOX (ZOOM) HTML STRUCTURE -->
+    <div id="lightbox" role="dialog" aria-modal="true">
+        <button id="closeLightbox" class="absolute top-6 right-6 text-white hover:text-gold transition-colors z-50">
+            <i data-lucide="x" class="w-10 h-10"></i>
+        </button>
+        
+        <button id="prevImg" class="absolute left-4 md:left-8 text-white/50 hover:text-gold transition-colors z-50 p-4">
+            <i data-lucide="chevron-left" class="w-12 h-12"></i>
+        </button>
+
+        <img id="lightboxImg" src="" alt="Zoom" class="lightbox-img">
+
+        <button id="nextImg" class="absolute right-4 md:right-8 text-white/50 hover:text-gold transition-colors z-50 p-4">
+            <i data-lucide="chevron-right" class="w-12 h-12"></i>
+        </button>
+        
+        <div id="lightboxCounter" class="absolute bottom-6 text-white/60 font-serif tracking-widest text-sm">
+            1 / 1
+        </div>
+    </div>
+
+    <!-- MODAL DE CURSOS (NUEVO) -->
+    <div id="courseModal">
+        <div class="modal-content relative">
+            <button onclick="closeCoursePanel()" class="absolute top-6 right-6 text-black/50 hover:text-gold z-50 transition-colors">
+                <i data-lucide="x" class="w-8 h-8"></i>
+            </button>
+            
+            <div id="modalBody">
+                <!-- Se llena dinámicamente -->
+            </div>
+        </div>
     </div>
 
     <!-- Scripts -->
@@ -437,7 +586,7 @@
                 1024: { slidesPerView: 3 },
                 1280: { slidesPerView: 4 }
             },
-            autoplay: { delay: 3000, disableOnInteraction: false }
+            autoplay: { delay: 4000, disableOnInteraction: false }
         });
 
         // Menu Toggle
@@ -447,16 +596,15 @@
             if (close) mobileMenu.classList.remove('open');
             else mobileMenu.classList.toggle('open');
         };
-
         menuBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleMenu(); });
         document.addEventListener('click', (e) => { if(!mobileMenu.contains(e.target)) toggleMenu(true); });
 
-        // Scroll Logic & Scrollspy
+        // Scroll & Nav Logic
         const nav = document.getElementById('mainNav');
         const sections = document.querySelectorAll('.section');
         const navLinks = document.querySelectorAll('.nav-link');
 
-        const updateNav = () => {
+        window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
                 nav.classList.add('py-2', 'bg-black', 'shadow-2xl');
                 nav.classList.remove('py-4');
@@ -473,10 +621,193 @@
                 l.classList.remove('active');
                 if (l.getAttribute('href').includes(current)) l.classList.add('active');
             });
+        });
+
+        // --- LIGHTBOX LOGIC ---
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const closeBtn = document.getElementById('closeLightbox');
+        const prevBtn = document.getElementById('prevImg');
+        const nextBtn = document.getElementById('nextImg');
+        const counter = document.getElementById('lightboxCounter');
+        
+        let galleryImages = [];
+        let currentIndex = 0;
+
+        const updateGalleryArray = () => {
+            const mainImg = document.querySelector('.gallery-item-main');
+            const carouselImgs = Array.from(document.querySelectorAll('#swiperGallery .gallery-item'));
+            galleryImages = [mainImg.src, ...carouselImgs.map(img => img.src)];
         };
 
-        window.addEventListener('scroll', updateNav);
-        window.addEventListener('load', updateNav);
+        const showImage = (index) => {
+            if (index < 0) index = galleryImages.length - 1;
+            if (index >= galleryImages.length) index = 0;
+            currentIndex = index;
+            lightboxImg.src = galleryImages[currentIndex];
+            counter.innerText = `${currentIndex + 1} / ${galleryImages.length}`;
+        };
+
+        const openLightbox = (index) => {
+            updateGalleryArray();
+            prevBtn.style.display = 'block';
+            nextBtn.style.display = 'block';
+            showImage(index);
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        };
+
+        const openSoloLightbox = (src) => {
+            galleryImages = [src];
+            currentIndex = 0;
+            lightboxImg.src = src;
+            counter.innerText = `1 / 1`;
+            prevBtn.style.display = 'none';
+            nextBtn.style.display = 'none';
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        const closeLightbox = () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        };
+
+        document.querySelectorAll('#swiperGallery .swiper-slide').forEach((slide, index) => {
+            slide.addEventListener('click', () => {
+                openLightbox(index + 1);
+            });
+        });
+
+        document.querySelectorAll('.solo-view').forEach((item) => {
+            item.addEventListener('click', () => {
+                openSoloLightbox(item.src);
+            });
+        });
+
+        closeBtn.addEventListener('click', closeLightbox);
+        nextBtn.addEventListener('click', (e) => { 
+            e.stopPropagation(); 
+            if(galleryImages.length > 1) showImage(currentIndex + 1); 
+        });
+        prevBtn.addEventListener('click', (e) => { 
+            e.stopPropagation(); 
+            if(galleryImages.length > 1) showImage(currentIndex - 1); 
+        });
+        
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        // --- PANEL DE CURSOS LOGIC ---
+        const courseData = {
+            pasarela: {
+                title: "Pasarela Profesional",
+                subtitle: "Técnicas de Alta Gama",
+                video: "https://www.w3schools.com/html/mov_bbb.mp4", // Reemplazar por URL real
+                desc: "Domina el arte de caminar con seguridad y elegancia. Este módulo está diseñado para quienes buscan la excelencia técnica en pasarelas nacionales e internacionales.",
+                modules: ["Postura y alineación corporal", "Giros, pivots y técnica de manos", "Manejo de accesorios y prendas pesadas", "Expresión facial y conexión con el público"],
+                benefits: ["Diploma certificado", "Acceso a castings exclusivos", "Grabación de tus prácticas"]
+            },
+            fotopose: {
+                title: "Foto Pose & Editorial",
+                subtitle: "Dominio de Cámara",
+                video: "https://www.w3schools.com/html/mov_bbb.mp4",
+                desc: "Aprende a comunicarte con la cámara sin usar palabras. Descubre tus mejores ángulos y cómo transmitir emociones en sesiones de moda comercial y editorial.",
+                modules: ["Psicología de la imagen", "Ángulos faciales y corporales", "Uso de la luz y sombras", "Posado dinámico y fluido"],
+                benefits: ["Shooting profesional incluido", "Retoque digital de alta gama", "Manejo de portafolio digital"]
+            },
+            marca: {
+                title: "Marca Personal & Redes",
+                subtitle: "Tu Negocio como Modelo",
+                video: "https://www.w3schools.com/html/mov_bbb.mp4",
+                desc: "En la era digital, un modelo es una marca. Te enseñamos a gestionar tus redes sociales, crear contenido de impacto y presentarte ante agencias con profesionalismo.",
+                modules: ["Estrategia de Instagram y TikTok", "Oratoria y marca personal", "Protocolo y etiqueta social", "Negociación y contratos"],
+                benefits: ["Asesoría de imagen personalizada", "Plan de contenidos", "Networking con agencias"]
+            }
+        };
+
+        const courseModal = document.getElementById('courseModal');
+        const modalBody = document.getElementById('modalBody');
+
+        function openCoursePanel(courseKey) {
+            const data = courseData[courseKey];
+            modalBody.innerHTML = `
+                <div class="p-8 md:p-12">
+                    <div class="flex flex-col lg:flex-row gap-12">
+                        <!-- Video / Media Section -->
+                        <div class="lg:w-1/2">
+                            <div class="rounded-3xl overflow-hidden bg-black aspect-video shadow-2xl relative">
+                                <video class="w-full h-full object-cover" controls>
+                                    <source src="${data.video}" type="video/mp4">
+                                    Tu navegador no soporta el video.
+                                </video>
+                            </div>
+                            <div class="mt-8 grid grid-cols-2 gap-4">
+                                <div class="bg-gold/10 p-4 rounded-2xl border border-gold/20">
+                                    <p class="text-[10px] uppercase font-bold text-gold mb-1">Duración</p>
+                                    <p class="text-sm font-semibold">3 Meses Intensivos</p>
+                                </div>
+                                <div class="bg-gold/10 p-4 rounded-2xl border border-gold/20">
+                                    <p class="text-[10px] uppercase font-bold text-gold mb-1">Modalidad</p>
+                                    <p class="text-sm font-semibold">Presencial / Híbrido</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Content Section -->
+                        <div class="lg:w-1/2 space-y-8">
+                            <div>
+                                <h4 class="text-gold font-bold uppercase tracking-widest text-xs mb-2">${data.subtitle}</h4>
+                                <h2 class="text-4xl font-serif text-black mb-4">${data.title}</h2>
+                                <p class="text-gray-600 leading-relaxed">${data.desc}</p>
+                            </div>
+
+                            <div>
+                                <h5 class="font-bold text-sm uppercase tracking-wider mb-4 flex items-center gap-2">
+                                    <i data-lucide="book-open" class="w-4 h-4 text-gold"></i> Temario Detallado
+                                </h5>
+                                <ul class="space-y-3">
+                                    ${data.modules.map(m => `
+                                        <li class="flex items-start gap-3 text-sm text-gray-500 italic">
+                                            <span class="text-gold mt-1">•</span> ${m}
+                                        </li>
+                                    `).join('')}
+                                </ul>
+                            </div>
+
+                            <div class="pt-6 border-t border-gray-100 flex flex-col sm:flex-row gap-4">
+                                <a href="https://forms.google.com" target="_blank" class="gold-button flex-1 py-4 rounded-full text-black font-bold uppercase text-xs">Reservar Cupo</a>
+                                <button onclick="closeCoursePanel()" class="flex-1 border border-gray-200 py-4 rounded-full font-bold uppercase text-xs hover:bg-gray-50 transition">Volver</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            lucide.createIcons(); // Inicializa iconos nuevos en el modal
+            courseModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCoursePanel() {
+            courseModal.classList.remove('active');
+            document.body.style.overflow = '';
+            // Detener el video al cerrar
+            const video = modalBody.querySelector('video');
+            if(video) video.pause();
+        }
+
+        courseModal.addEventListener('click', (e) => {
+            if (e.target === courseModal) closeCoursePanel();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLightbox();
+                closeCoursePanel();
+            }
+        });
+
     </script>
 </body>
-</html>
+</html> 
