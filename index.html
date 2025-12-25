@@ -2,227 +2,222 @@
 
 <html lang="es">
 <head>
-    <meta name="google-site-verification" content="fhiYrITRfyj5Su96k5dhkHbokuL7B2U2NxaTqWAUIeA" />
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<!-- SEO Básico -->
-<title>Natasha Models | Academia de Modelaje Profesional e Inclusivo en San Juan</title>
-<meta content="Natasha Models es una academia de modelaje profesional e inclusivo en San Juan. Cursos de pasarela, foto pose y marca personal con formación integral." name="description"/>
-<meta content="academia de modelaje, curso de modelaje, Natasha Models, modelaje inclusivo, pasarela profesional, foto pose, Génesis Pyme" name="keywords"/>
-<meta content="Génesis Pyme" name="author"/>
-<meta content="index, follow" name="robots"/>
-<link href="https://genesispyme.github.io/Natasha-Models/" rel="canonical"/>
-<!-- Open Graph / Facebook / Instagram -->
-<meta content="website" property="og:type"/>
-<meta content="https://genesispyme.github.io/Natasha-Models/" property="og:url"/>
-<meta content="Natasha Models | Academia de Modelaje Profesional" property="og:title"/>
-<meta content="Descubre tu potencial en la academia líder de modelaje profesional e inclusivo. Formación integral con Natasha y Veronica Bassos." property="og:description"/>
-<meta content="https://genesispyme.github.io/Natasha-Models/img/f29.jpeg" property="og:image"/>
-<!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com"></script>
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&amp;family=Montserrat:wght@300;400;600&amp;display=swap" rel="stylesheet"/>
-<!-- Lucide Icons -->
-<script src="https://unpkg.com/lucide@latest"></script>
-<!-- AOS Animations -->
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
-<!-- Swiper CSS -->
-<link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet">
-<link href="icon2.png" rel="icon" type="image/x-icon"/>
-<style>
-        :root {
-            --gold: #D4AF37;
-            --dark-gold: #B8860B;
-        }
-        html {
-            scroll-behavior: smooth;
-        }
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: #ffffff;
-            color: #1a1a1a;
-        }
-        h1, h2, h3, .font-serif {
-            font-family: 'Playfair Display', serif;
-        }
-        .bg-gold { background-color: var(--gold); }
-        .text-gold { color: var(--gold); }
-        .border-gold { border-color: var(--gold); }
-        
-        /* Navegación */
-        .nav-link {
-            position: relative;
-            transition: color 0.3s;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background-color: var(--gold);
-            transition: width 0.3s;
-        }
-        .nav-link:hover::after, .nav-link.active::after {
-            width: 100%;
-        }
-        .nav-link.active {
-            color: var(--gold);
-        }
+  <meta name="google-site-verification" content="fhiYrITRfyj5Su96k5dhkHbokuL7B2U2NxaTqWAUIeA" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-        /* Hero & Buttons */
-        .hero-gradient {
-            background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('img/f30.jpeg');
-            background-size: cover;
-            background-position: center;
-        }
+  <!-- SEO Básico -->
+  <title>Natasha Models | Academia de Modelaje Profesional e Inclusivo en San Juan</title>
+  <meta name="description" content="Natasha Models es una academia de modelaje profesional e inclusivo en San Juan. Cursos de pasarela, foto pose y marca personal con formación integral."/>
+  <meta name="keywords" content="academia de modelaje, curso de modelaje, Natasha Models, modelaje inclusivo, pasarela profesional, foto pose, Génesis Pyme"/>
+  <meta name="author" content="Génesis Pyme"/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://genesispyme.github.io/Natasha-Models/"/>
 
-        .gold-button {
-            background: linear-gradient(45deg, var(--dark-gold), var(--gold));
-            transition: transform 0.3s, box-shadow 0.3s;
-            opacity: 1 !important;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .gold-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.4);
-        }
+  <!-- Open Graph / Facebook / Instagram / WhatsApp -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://genesispyme.github.io/Natasha-Models/"/>
+  <meta property="og:title" content="Natasha Models | Academia de Modelaje Profesional"/>
+  <meta property="og:description" content="Descubre tu potencial en la academia líder de modelaje profesional e inclusivo. Formación integral con Natasha y Veronica Bassos."/>
+  <meta property="og:image" content="https://genesispyme.github.io/Natasha-Models/img/f26.jpeg"/>
+  <meta property="og:image:type" content="image/jpeg"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
 
-        /* Galería & Carrusel */
-        .gallery-cover {
-            height: 500px;
-            border-radius: 2rem;
-            overflow: hidden;
-            position: relative;
-            margin-bottom: 2rem;
-            cursor: pointer;
-        }
-        .gallery-cover img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 1s ease;
-        }
-        .gallery-cover:hover img {
-            transform: scale(1.05);
-        }
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Natasha Models | Academia de Modelaje Profesional"/>
+  <meta name="twitter:description" content="Natasha Models es una academia de modelaje profesional e inclusivo en San Juan. Cursos de pasarela, foto pose y marca personal con formación integral."/>
+  <meta name="twitter:image" content="https://genesispyme.github.io/Natasha-Models/img/f26.jpeg"/>
 
-        .swiper-slide {
-            height: 350px;
-            border-radius: 1.5rem;
-            overflow: hidden;
-            cursor: pointer;
-        }
-        .swiper-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        .swiper-slide:hover img {
-            transform: scale(1.1);
-        }
-        .swiper-pagination-bullet-active {
-            background: var(--gold) !important;
-        }
+  <meta name="theme-color" content="#000000"/>
 
-        /* Animación de la flecha de scroll */
-        @keyframes bounce-slow {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
-        }
-        .scroll-indicator {
-            animation: bounce-slow 2s infinite;
-        }
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-        /* Menu Móvil */
-        #mobileMenu {
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        #mobileMenu.open {
-            max-height: 600px;
-            opacity: 1;
-            padding: 2rem 0;
-        }
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap"/>
 
-        nav {
-            transition: all 0.4s ease;
-        }
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
 
-        .floating-cta {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            z-index: 100;
-        }
+  <!-- AOS Animations -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
 
-        /* Lightbox Custom Styles */
-        #lightbox, #courseModal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 9999;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(8px);
-        }
-        #lightbox.active, #courseModal.active {
-            display: flex;
-        }
-        .lightbox-img {
-            max-width: 90%;
-            max-height: 85vh;
-            border-radius: 0.5rem;
-            box-shadow: 0 0 50px rgba(0,0,0,0.5);
-            transform: scale(0.9);
-            transition: transform 0.3s ease-out;
-        }
-        #lightbox.active .lightbox-img {
-            transform: scale(1);
-        }
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 
-        /* Modal de Cursos */
-        .modal-content {
-            background: white;
-            width: 95%;
-            max-width: 1000px;
-            max-height: 90vh;
-            border-radius: 2rem;
-            overflow-y: auto;
-            position: relative;
-            transform: translateY(20px);
-            transition: transform 0.4s ease;
-        }
-        #courseModal.active .modal-content {
-            transform: translateY(0);
-        }
-    </style>
-</link><meta content="summary_large_image" name="twitter:card"/><meta content="Natasha Models | Academia de Modelaje Profesional" name="twitter:title"/><meta content="Natasha Models es una academia de modelaje profesional e inclusivo en San Juan. Cursos de pasarela, foto pose y marca personal con formación integral." name="twitter:description"/><meta content="https://genesispyme.github.io/Natasha-Models/img/f29.jpeg" name="twitter:image"/><meta content="#000000" name="theme-color"/><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "EducationalOrganization",
-  "name": "Natasha Models",
-  "url": "https://genesispyme.github.io/Natasha-Models/",
-  "logo": "https://genesispyme.github.io/Natasha-Models/icon2.png",
-  "email": "natashamodelssj@gmail.com",
-  "telephone": "+54 264 523 3264",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "San Juan",
-    "addressCountry": "AR"
-  },
-  "description": "Natasha Models es una academia de modelaje profesional e inclusivo en San Juan. Cursos de pasarela, foto pose y marca personal con formación integral."
-}</script></head>
+  <!-- Favicon -->
+  <link rel="icon" href="icon2.png" type="image/x-icon"/>
+
+  <style>
+    :root {
+      --gold: #D4AF37;
+      --dark-gold: #B8860B;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #ffffff;
+      color: #1a1a1a;
+    }
+    h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
+    .bg-gold { background-color: var(--gold); }
+    .text-gold { color: var(--gold); }
+    .border-gold { border-color: var(--gold); }
+
+    /* Navegación */
+    .nav-link { position: relative; transition: color 0.3s; }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: var(--gold);
+      transition: width 0.3s;
+    }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+    .nav-link.active { color: var(--gold); }
+
+    /* Hero & Buttons */
+    .hero-gradient {
+      background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('img/f30.jpeg');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .gold-button {
+      background: linear-gradient(45deg, var(--dark-gold), var(--gold));
+      transition: transform 0.3s, box-shadow 0.3s;
+      opacity: 1 !important;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .gold-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(212, 175, 55, 0.4);
+    }
+
+    /* Galería & Carrusel */
+    .gallery-cover {
+      height: 500px;
+      border-radius: 2rem;
+      overflow: hidden;
+      position: relative;
+      margin-bottom: 2rem;
+      cursor: pointer;
+    }
+    .gallery-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 1s ease;
+    }
+    .gallery-cover:hover img { transform: scale(1.05); }
+
+    .swiper-slide {
+      height: 350px;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .swiper-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .swiper-slide:hover img { transform: scale(1.1); }
+    .swiper-pagination-bullet-active { background: var(--gold) !important; }
+
+    /* Animación de la flecha de scroll */
+    @keyframes bounce-slow {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-10px); }
+      60% { transform: translateY(-5px); }
+    }
+    .scroll-indicator { animation: bounce-slow 2s infinite; }
+
+    /* Menu Móvil */
+    #mobileMenu {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    #mobileMenu.open { max-height: 600px; opacity: 1; padding: 2rem 0; }
+
+    nav { transition: all 0.4s ease; }
+
+    .floating-cta {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 100;
+    }
+
+    /* Lightbox Custom Styles */
+    #lightbox, #courseModal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(8px);
+    }
+    #lightbox.active, #courseModal.active { display: flex; }
+    .lightbox-img {
+      max-width: 90%;
+      max-height: 85vh;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 50px rgba(0,0,0,0.5);
+      transform: scale(0.9);
+      transition: transform 0.3s ease-out;
+    }
+    #lightbox.active .lightbox-img { transform: scale(1); }
+
+    /* Modal de Cursos */
+    .modal-content {
+      background: white;
+      width: 95%;
+      max-width: 1000px;
+      max-height: 90vh;
+      border-radius: 2rem;
+      overflow-y: auto;
+      position: relative;
+      transform: translateY(20px);
+      transition: transform 0.4s ease;
+    }
+    #courseModal.active .modal-content { transform: translateY(0); }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "Natasha Models",
+    "url": "https://genesispyme.github.io/Natasha-Models/",
+    "logo": "https://genesispyme.github.io/Natasha-Models/icon2.png",
+    "email": "natashamodelssj@gmail.com",
+    "telephone": "+54 264 523 3264",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "San Juan",
+      "addressCountry": "AR"
+    },
+    "description": "Natasha Models es una academia de modelaje profesional e inclusivo en San Juan. Cursos de pasarela, foto pose y marca personal con formación integral."
+  }
+  </script>
+</head>
+
 <body class="overflow-x-hidden">
 <!-- Navegación -->
 <nav class="fixed top-0 left-0 w-full z-50 bg-black/95 text-white backdrop-blur-md border-b border-white/10 py-4" id="mainNav">
