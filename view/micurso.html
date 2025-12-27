@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
+  <!-- SEO Básico -->
+  <title>Muestra Académica | Natasha Models</title>
+  <meta name="description" content="Conoce a nuestro staff y accede a clases de muestra de Natasha Models."/>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap"/>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- AOS Animations -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
+
+  <!-- Favicon -->
+  <link rel="icon" href="../icon2.png" type="image/x-icon"/>
+
+  <style>
+    :root {
+      --gold: #D4AF37;
+      --dark-gold: #B8860B;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #050505;
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, h4, .font-serif { font-family: 'Playfair Display', serif; }
+
+    /* Estilos heredados de Index */
+    .text-gold { color: var(--gold); }
+    .bg-gold { background-color: var(--gold); }
+    
+    .gold-button {
+      background: linear-gradient(45deg, var(--dark-gold), var(--gold));
+      transition: transform 0.3s, box-shadow 0.3s;
+      opacity: 1 !important;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .gold-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(212, 175, 55, 0.4);
+    }
+
+    /* Navegación */
+    .nav-link { position: relative; transition: color 0.3s; }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: var(--gold);
+      transition: width 0.3s;
+    }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+    .nav-link.active { color: var(--gold); }
+
+    /* Estilos específicos para el enlace móvil con línea */
+    .mobile-nav-link { 
+      position: relative; 
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+    .mobile-nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--gold);
+      transition: width 0.3s;
+    }
+    .mobile-nav-link.active { color: var(--gold); }
+    .mobile-nav-link.active::after { width: 30px; }
+
+    /* Menu Móvil Animado */
+    #mobileMenu {
+      max-height: 0;
+      opacity: 0;
+      visibility: hidden;
+      overflow: hidden;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      transform: translateY(-10px);
+    }
+    #mobileMenu.open { 
+      max-height: 100vh; 
+      opacity: 1; 
+      visibility: visible;
+      padding: 2.5rem 0; 
+      transform: translateY(0);
+    }
+    
+    #mobileMenu a {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.4s ease;
+    }
+    #mobileMenu.open a {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    #mobileMenu.open a:nth-child(1) { transition-delay: 0.1s; }
+    #mobileMenu.open a:nth-child(2) { transition-delay: 0.2s; }
+    #mobileMenu.open a:nth-child(3) { transition-delay: 0.3s; }
+
+    /* Estilos específicos de Catálogo */
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 2rem;
+      background: #111;
+      border: 1px solid rgba(255,255,255,0.05);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .teacher-card {
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+    }
+    .teacher-card:hover { transform: translateY(-10px); }
+    .teacher-card.active {
+      border-color: var(--gold);
+      background: rgba(212, 175, 55, 0.05);
+    }
+
+    .filter-btn { transition: all 0.3s ease; }
+    .filter-btn.active {
+      background: var(--gold);
+      color: black;
+      border-color: var(--gold);
+    }
+
+    .catalog-item { transition: all 0.6s ease; }
+    .catalog-item.hidden-item {
+      display: none;
+      opacity: 0;
+      transform: scale(0.9);
+    }
+
+    .floating-cta {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 100;
+    }
+
+    /* Scrollbar Personalizado */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #000; }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
+  </style>
+</head>
+<body class="overflow-x-hidden">
+
+<!-- Navegación -->
+<nav class="fixed top-0 left-0 w-full z-50 bg-black/95 text-white backdrop-blur-md border-b border-white/10 py-4" id="mainNav">
+  <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+    <div class="flex items-center gap-4">
+      <img alt="Logo Natasha Models" class="h-8 md:h-10 w-auto brightness-110" src="../icon2.png"/>
+      <span class="text-base md:text-xl font-serif tracking-widest uppercase">Natasha Models</span>
+    </div>
+    <div class="hidden md:flex gap-8 items-center">
+      <a class="nav-link text-[10px] uppercase tracking-wider" href="../index.html">Inicio</a>
+      <a class="nav-link text-[10px] uppercase tracking-wider" href="#profesores">Profesores</a>
+      <a class="nav-link text-[10px] uppercase tracking-wider" href="#catalogo">Catálogo</a>
+      <a class="gold-button px-6 py-2 rounded-full text-black font-bold text-[10px] uppercase tracking-widest" href="https://forms.google.com" target="_blank">Inscribirse</a>
+    </div>
+    <button aria-label="Abrir menú" class="md:hidden text-gold p-2 transition-transform active:scale-90" id="menuBtn">
+      <i data-lucide="menu"></i>
+    </button>
+  </div>
+  <div class="md:hidden bg-black text-center space-y-8 border-t border-white/5" id="mobileMenu">
+    <a class="mobile-nav-link block text-lg font-serif uppercase tracking-widest" href="../index.html">Inicio</a>
+    <a class="mobile-nav-link block text-lg font-serif uppercase tracking-widest" href="#profesores">Profesores</a>
+    <a class="mobile-nav-link block text-lg font-serif uppercase tracking-widest" href="#catalogo">Catálogo</a>
+    <div class="px-10">
+      <a class="inline-block gold-button w-full py-4 rounded-full text-black font-bold uppercase text-[10px] tracking-widest" href="https://forms.google.com" target="_blank">Inscribirse</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<header class="relative pt-48 pb-20 px-6 text-center overflow-hidden section" id="header">
+  <div class="absolute inset-0 bg-gradient-to-b from-gold/5 to-transparent pointer-events-none"></div>
+  <div class="max-w-4xl mx-auto relative z-10" data-aos="fade-up">
+    <span class="text-gold font-bold uppercase tracking-[0.5em] text-[10px] mb-6 block">— Campus Virtual</span>
+    <h1 class="text-5xl md:text-7xl font-serif mb-8 leading-tight">Explora nuestra <br><span class="italic">Formación</span></h1>
+    <p class="text-white/50 text-sm md:text-lg max-w-2xl mx-auto font-light leading-relaxed">
+      Descubre la calidad académica de Natasha Models. Selecciona un profesional para ver su metodología o navega por todas nuestras áreas de especialización.
+    </p>
+  </div>
+</header>
+
+<!-- Profesores -->
+<section id="profesores" class="py-24 bg-[#080808] section">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16" data-aos="fade-down">
+      <h2 class="text-3xl md:text-4xl font-serif mb-4">Nuestro Staff Académico</h2>
+      <div class="h-0.5 w-16 bg-gold mx-auto mb-6"></div>
+      <p class="text-white/40 text-[10px] uppercase tracking-widest">Haz clic en un perfil para filtrar sus contenidos</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <!-- Veronica Basso (Posicionada primero para celular y PC) -->
+      <div class="teacher-card group bg-white/5 border border-white/5 p-6 rounded-[2.5rem] shadow-2xl" data-aos="fade-up" onclick="filterByCategory('veronica', this)">
+        <div class="relative overflow-hidden rounded-[1.5rem] mb-6 aspect-[4/5]">
+          <img src="https://genesispyme.github.io/Natasha-Models/img/f26.jpeg" alt="Veronica Basso" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <i data-lucide="play" class="text-gold w-10 h-10 fill-gold"></i>
+          </div>
+        </div>
+        <h4 class="text-xl font-serif text-white mb-1">Veronica Basso</h4>
+        <p class="text-[9px] uppercase font-bold tracking-widest text-gold">Pasarela & Redes</p>
+      </div>
+
+      <!-- Elena V -->
+      <div class="teacher-card group bg-white/5 border border-white/5 p-6 rounded-[2.5rem] shadow-2xl" data-aos="fade-up" data-aos-delay="100" onclick="filterByCategory('maquillaje', this)">
+        <div class="relative overflow-hidden rounded-[1.5rem] mb-6 aspect-[4/5]">
+          <img src="https://images.unsplash.com/photo-1595959183082-7b570b7e08e2?auto=format&fit=crop&q=80&w=400" alt="Elena V." class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <i data-lucide="play" class="text-gold w-10 h-10 fill-gold"></i>
+          </div>
+        </div>
+        <h4 class="text-xl font-serif text-white mb-1">Elena V.</h4>
+        <p class="text-[9px] uppercase font-bold tracking-widest text-gold">Maquillaje & Estética</p>
+      </div>
+
+      <!-- Marcos R -->
+      <div class="teacher-card group bg-white/5 border border-white/5 p-6 rounded-[2.5rem] shadow-2xl" data-aos="fade-up" data-aos-delay="200" onclick="filterByCategory('nutricion', this)">
+        <div class="relative overflow-hidden rounded-[1.5rem] mb-6 aspect-[4/5]">
+          <img src="https://images.unsplash.com/photo-1614608682850-e0d6ed316d47?auto=format&fit=crop&q=80&w=400" alt="Marcos R." class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <i data-lucide="play" class="text-gold w-10 h-10 fill-gold"></i>
+          </div>
+        </div>
+        <h4 class="text-xl font-serif text-white mb-1">Lic. Marcos R.</h4>
+        <p class="text-[9px] uppercase font-bold tracking-widest text-gold">Nutrición & Bienestar</p>
+      </div>
+
+      <!-- Julián Basso -->
+      <div class="teacher-card group bg-white/5 border border-white/5 p-6 rounded-[2.5rem] shadow-2xl" data-aos="fade-up" data-aos-delay="300" onclick="filterByCategory('foto', this)">
+        <div class="relative overflow-hidden rounded-[1.5rem] mb-6 aspect-[4/5]">
+          <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&q=80&w=400" alt="Julián Basso" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <i data-lucide="play" class="text-gold w-10 h-10 fill-gold"></i>
+          </div>
+        </div>
+        <h4 class="text-xl font-serif text-white mb-1">Julián Basso</h4>
+        <p class="text-[9px] uppercase font-bold tracking-widest text-gold">Fotografía Profesional</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Catálogo de Clases -->
+<section id="catalogo" class="py-24 px-6 bg-black section">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16" data-aos="fade-up">
+      <h2 class="text-4xl md:text-5xl font-serif mb-12">Catálogo de Contenidos</h2>
+      
+      <div class="flex flex-wrap justify-center gap-4 mb-16">
+        <button class="filter-btn active px-8 py-3 rounded-full border border-white/10 text-[9px] font-bold uppercase tracking-widest" onclick="filterByCategory('all', this)">Explorar Todo</button>
+        <button class="filter-btn px-8 py-3 rounded-full border border-white/10 text-[9px] font-bold uppercase tracking-widest text-white/40" onclick="filterByCategory('pasarela', this)">Pasarela</button>
+        <button class="filter-btn px-8 py-3 rounded-full border border-white/10 text-[9px] font-bold uppercase tracking-widest text-white/40" onclick="filterByCategory('foto', this)">Fotografía</button>
+        <button class="filter-btn px-8 py-3 rounded-full border border-white/10 text-[9px] font-bold uppercase tracking-widest text-white/40" onclick="filterByCategory('maquillaje', this)">Maquillaje</button>
+        <button class="filter-btn px-8 py-3 rounded-full border border-white/10 text-[9px] font-bold uppercase tracking-widest text-white/40" onclick="filterByCategory('nutricion', this)">Nutrición</button>
+        <button class="filter-btn px-8 py-3 rounded-full border border-white/10 text-[9px] font-bold uppercase tracking-widest text-white/40" onclick="filterByCategory('redes', this)">Redes Sociales</button>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16" id="catalogGrid">
+      <!-- Item: Pasarela -->
+      <div class="catalog-item space-y-6" data-category="pasarela" data-aos="zoom-in">
+        <div class="video-container">
+          <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0" title="Pasarela" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="flex justify-between items-start border-l border-gold/30 pl-6">
+          <div>
+            <span class="text-gold font-bold text-[8px] uppercase tracking-[0.3em] mb-2 block">Cátedra de Pasarela</span>
+            <h3 class="text-2xl font-serif">Técnica de Caminata e Impacto</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item: Foto -->
+      <div class="catalog-item space-y-6" data-category="foto" data-aos="zoom-in">
+        <div class="video-container">
+          <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0" title="Fotografía" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="flex justify-between items-start border-l border-gold/30 pl-6">
+          <div>
+            <span class="text-gold font-bold text-[8px] uppercase tracking-[0.3em] mb-2 block">Cátedra de Fotografía</span>
+            <h3 class="text-2xl font-serif">Dominio Corporal en Estudio</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item: Redes -->
+      <div class="catalog-item space-y-6" data-category="redes" data-aos="zoom-in">
+        <div class="video-container">
+          <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0" title="Redes" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="flex justify-between items-start border-l border-gold/30 pl-6">
+          <div>
+            <span class="text-gold font-bold text-[8px] uppercase tracking-[0.3em] mb-2 block">Cátedra de Redes Sociales</span>
+            <h3 class="text-2xl font-serif">Branding y Marca Personal</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item: Maquillaje -->
+      <div class="catalog-item space-y-6" data-category="maquillaje" data-aos="zoom-in">
+        <div class="video-container">
+          <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0" title="Maquillaje" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="flex justify-between items-start border-l border-gold/30 pl-6">
+          <div>
+            <span class="text-gold font-bold text-[8px] uppercase tracking-[0.3em] mb-2 block">Cátedra de Estética</span>
+            <h3 class="text-2xl font-serif">Preparación de Piel y Maquillaje</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Final -->
+<section class="py-32 bg-gradient-to-t from-gold/10 to-transparent text-center px-6">
+  <div class="max-w-2xl mx-auto" data-aos="fade-up">
+    <h2 class="text-4xl md:text-5xl font-serif mb-8 italic">Comienza tu viaje hoy</h2>
+    <p class="text-white/40 mb-10 text-sm font-light">Accede a una formación profesional, inclusiva y con visión de futuro.</p>
+    <a href="https://forms.google.com" target="_blank" class="gold-button px-12 py-5 rounded-full text-black font-bold uppercase text-[10px] tracking-widest">Inscribirse en el Ciclo 2024</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-black text-white pt-20 pb-10 border-t border-white/5">
+  <div class="max-w-7xl mx-auto px-6 text-center">
+    <img alt="Logo" class="h-8 w-auto brightness-110 mx-auto mb-8 opacity-50" src="../icon2.png"/>
+    <p class="text-white/30 text-[9px] uppercase tracking-[0.5em]">Natasha Models Academy © 2024</p>
+  </div>
+</footer>
+
+<!-- Botón Flotante -->
+<div class="floating-cta">
+  <a class="gold-button flex items-center justify-center w-14 h-14 md:w-auto md:h-auto md:px-6 md:py-4 rounded-full text-black font-bold shadow-2xl" href="https://forms.gle/JkVQZX1Ur2BBmyug8" target="_blank">
+    <i class="w-6 h-6 md:w-5 md:h-5" data-lucide="file-text"></i>
+    <span class="hidden md:inline uppercase text-[10px] tracking-widest ml-2">Inscríbete Hoy</span>
+  </a>
+</div>
+
+<!-- Scripts -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  lucide.createIcons();
+  AOS.init({ duration: 1000, once: true });
+
+  // --- MENU MÓVIL ---
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  
+  const toggleMenu = (close = false) => {
+    if (close) {
+      mobileMenu.classList.remove('open');
+      menuBtn.innerHTML = '<i data-lucide="menu"></i>';
+    } else {
+      mobileMenu.classList.toggle('open');
+      const isOpen = mobileMenu.classList.contains('open');
+      menuBtn.innerHTML = isOpen ? '<i data-lucide="x"></i>' : '<i data-lucide="menu"></i>';
+    }
+    lucide.createIcons();
+  };
+
+  menuBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleMenu(); });
+  document.addEventListener('click', (e) => { if(!mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) toggleMenu(true); });
+
+  // --- SCROLL & ACTIVE STATE ---
+  const nav = document.getElementById('mainNav');
+  const sections = document.querySelectorAll('.section');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+  window.addEventListener('scroll', () => {
+    // Estilo Nav al scroll
+    if (window.scrollY > 30) {
+      nav.classList.add('py-2', 'bg-black');
+      nav.classList.remove('py-4');
+    } else {
+      nav.classList.remove('py-2', 'bg-black');
+      nav.classList.add('py-4');
+    }
+
+    // Active State
+    let current = "";
+    sections.forEach(s => {
+      const sectionTop = s.offsetTop;
+      if (window.pageYOffset >= sectionTop - 150) current = s.getAttribute('id');
+    });
+
+    navLinks.forEach(l => {
+      l.classList.remove('active');
+      if (l.getAttribute('href').includes(current)) l.classList.add('active');
+    });
+
+    mobileLinks.forEach(ml => {
+      ml.classList.remove('active');
+      if (ml.getAttribute('href').includes(current)) ml.classList.add('active');
+    });
+  });
+
+  // --- FILTRADO ---
+  function filterByCategory(category, element) {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    filterBtns.forEach(btn => {
+      btn.classList.remove('active');
+      btn.classList.add('text-white/40', 'border-white/10');
+    });
+
+    const teacherCards = document.querySelectorAll('.teacher-card');
+    teacherCards.forEach(card => card.classList.remove('active'));
+
+    if (element.classList.contains('filter-btn')) {
+      element.classList.add('active');
+      element.classList.remove('text-white/40', 'border-white/10');
+    } else {
+      element.classList.add('active');
+      let targetBtn;
+      if (category === 'veronica') targetBtn = 'pasarela';
+      else targetBtn = category;
+      
+      filterBtns.forEach(btn => {
+        if(btn.getAttribute('onclick').includes(targetBtn)) {
+          btn.classList.add('active');
+          btn.classList.remove('text-white/40', 'border-white/10');
+        }
+      });
+    }
+
+    const catalogItems = document.querySelectorAll('.catalog-item');
+    
+    catalogItems.forEach(item => {
+      item.style.opacity = '0';
+      item.style.transform = 'scale(0.9)';
+      
+      setTimeout(() => {
+        let show = false;
+        const itemCat = item.getAttribute('data-category');
+        
+        if (category === 'all') show = true;
+        else if (category === 'veronica') show = (itemCat === 'pasarela' || itemCat === 'redes');
+        else show = (itemCat === category);
+
+        if (show) {
+          item.classList.remove('hidden-item');
+          item.style.display = 'block';
+          setTimeout(() => {
+            item.style.opacity = '1';
+            item.style.transform = 'scale(1)';
+          }, 50);
+        } else {
+          item.classList.add('hidden-item');
+          item.style.display = 'none';
+        }
+      }, 300);
+    });
+
+    if (element.classList.contains('teacher-card')) {
+      setTimeout(() => {
+        document.getElementById('catalogo').scrollIntoView({ behavior: 'smooth' });
+      }, 400);
+    }
+  }
+</script>
+</body>
+</html>

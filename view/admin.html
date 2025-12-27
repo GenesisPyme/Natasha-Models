@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Panel (Pruebas) | Natasha Models</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap"/>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- AOS Animations -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
+
+  <!-- Favicon -->
+  <link rel="icon" href="../icon2.png" type="image/x-icon"/>
+
+  <style>
+    :root {
+      --gold: #D4AF37;
+      --dark-gold: #B8860B;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #050505;
+      color: #ffffff;
+      min-height: 100vh;
+    }
+    h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
+
+    .gold-gradient {
+      background: linear-gradient(45deg, var(--dark-gold), var(--gold));
+    }
+    .text-gold { color: var(--gold); }
+    .border-gold { border-color: var(--gold); }
+
+    input, select, textarea {
+      background: rgba(255,255,255,0.05) !important;
+      border: 1px solid rgba(255,255,255,0.1) !important;
+      color: white !important;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+    input:focus, select:focus {
+      border-color: var(--gold) !important;
+      background: rgba(255,255,255,0.1) !important;
+    }
+
+    .admin-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 1.5rem;
+      transition: all 0.4s ease;
+    }
+    .admin-card:hover {
+      border-color: rgba(212, 175, 55, 0.2);
+      background: rgba(255,255,255,0.04);
+      transform: translateY(-2px);
+    }
+
+    /* Modales */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(8px);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-content {
+      background: #0f0f0f;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 2rem;
+      width: 100%;
+      max-width: 600px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      transform: scale(0.95);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+    .modal-overlay.active .modal-content {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    /* File Upload Styling */
+    .file-input-wrapper {
+      position: relative;
+      width: 100%;
+      height: 120px;
+      border: 2px dashed rgba(255,255,255,0.1);
+      border-radius: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .file-input-wrapper:hover {
+      border-color: var(--gold);
+      background: rgba(212, 175, 55, 0.05);
+    }
+    .file-input-wrapper input {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 1.5rem;
+      background: #000;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .video-container iframe {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    }
+
+    /* Scrollbar Personalizado */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #000; }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
+  </style>
+</head>
+<body class="pb-20">
+
+  <div id="adminContent">
+    <!-- Navbar Admin -->
+    <nav class="sticky top-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/10 py-4 mb-12">
+      <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+        <div class="flex items-center gap-3">
+          <img src="../icon2.png" alt="Logo" class="h-8">
+          <span class="font-serif uppercase tracking-widest text-sm text-gold">Admin Panel (MODO PRUEBA)</span>
+        </div>
+        <div class="flex items-center gap-6">
+          <span class="text-[9px] text-white/30 uppercase tracking-[0.2em]">Los cambios no se guardan en el servidor</span>
+          <a href="micurso.html" class="text-[10px] uppercase font-bold tracking-widest text-white/50 hover:text-gold transition flex items-center gap-2">
+            <i data-lucide="eye" class="w-3 h-3"></i> Vista Usuario
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-6">
+      
+      <!-- Sección Staff -->
+      <section class="mb-24">
+        <div class="flex justify-between items-end mb-8">
+          <div>
+            <h2 class="text-3xl md:text-4xl font-serif text-white">Gestión de Staff</h2>
+            <p class="text-white/40 text-[10px] uppercase tracking-widest mt-1 italic">Personalización de instructores</p>
+          </div>
+          <button onclick="openStaffModal()" class="bg-white/10 hover:bg-gold hover:text-black transition-all px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest flex items-center gap-2 border border-white/10">
+            <i data-lucide="plus-circle" class="w-4 h-4"></i> Nuevo Profesor
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="staffList">
+          <!-- Dinámico -->
+        </div>
+      </section>
+
+      <!-- Sección Catálogo -->
+      <section>
+        <div class="flex justify-between items-end mb-8">
+          <div>
+            <h2 class="text-3xl md:text-4xl font-serif text-white">Catálogo de Clases</h2>
+            <p class="text-white/40 text-[10px] uppercase tracking-widest mt-1 italic">Contenido audiovisual de muestra</p>
+          </div>
+          <button onclick="openCatalogModal()" class="gold-gradient text-black px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-lg shadow-gold/20 flex items-center gap-2">
+            <i data-lucide="clapperboard" class="w-4 h-4"></i> Añadir Video
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="catalogList">
+          <!-- Dinámico -->
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Modal Staff -->
+  <div id="staffModal" class="modal-overlay" onclick="closeModal(event, 'staffModal')">
+    <div class="modal-content p-8" onclick="event.stopPropagation()">
+      <div class="flex justify-between items-center mb-8">
+        <h3 class="text-2xl font-serif text-gold" id="staffModalTitle">Nuevo Profesor</h3>
+        <button onclick="document.getElementById('staffModal').classList.remove('active')" class="text-white/30 hover:text-white">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+      </div>
+      <form id="staffForm" class="space-y-6">
+        <input type="hidden" id="staffId">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="space-y-2">
+            <label class="text-[9px] uppercase tracking-widest text-white/40 font-bold">Nombre Completo</label>
+            <input type="text" id="staffName" class="w-full p-3 rounded-xl text-sm" placeholder="Ej. Veronica Basso">
+          </div>
+          <div class="space-y-2">
+            <label class="text-[9px] uppercase tracking-widest text-white/40 font-bold">Especialidad</label>
+            <input type="text" id="staffRole" class="w-full p-3 rounded-xl text-sm" placeholder="Ej. Pasarela & Redes">
+          </div>
+        </div>
+        <div class="space-y-2">
+          <label class="text-[9px] uppercase tracking-widest text-white/40 font-bold">Categoría del Filtro</label>
+          <select id="staffCategory" class="w-full p-3 rounded-xl text-xs font-bold uppercase tracking-widest">
+            <option value="veronica">Veronica (Pasarela + Redes)</option>
+            <option value="foto">Fotografía</option>
+            <option value="maquillaje">Maquillaje</option>
+            <option value="nutricion">Nutrición</option>
+          </select>
+        </div>
+        
+        <div class="space-y-2">
+          <label class="text-[9px] uppercase tracking-widest text-white/40 font-bold">Subir Fotografía</label>
+          <div class="file-input-wrapper">
+            <i data-lucide="upload-cloud" class="text-gold/50 mb-2"></i>
+            <span class="text-[10px] text-white/40 font-bold uppercase tracking-widest">Seleccionar Archivo</span>
+            <input type="file" id="staffFile" accept="image/*" onchange="handleFileSelect(event)">
+          </div>
+          <p id="fileName" class="text-[8px] text-white/20 text-center italic mt-2"></p>
+          
+          <div class="mt-6 flex flex-col items-center">
+            <p class="text-[8px] uppercase tracking-widest text-white/20 mb-3">Previsualización</p>
+            <div class="rounded-2xl overflow-hidden border border-white/5 aspect-[4/5] w-32 bg-white/5 shadow-2xl">
+              <img id="staffPreview" src="" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/400x500?text=Sin+Foto'">
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-6 flex gap-4">
+          <button type="button" id="saveStaffBtn" onclick="saveStaff()" class="gold-gradient flex-1 py-4 rounded-xl text-black font-bold uppercase text-[10px] tracking-widest transition active:scale-95">Guardar Cambios</button>
+          <button type="button" onclick="document.getElementById('staffModal').classList.remove('active')" class="flex-1 bg-white/5 py-4 rounded-xl font-bold uppercase text-[10px] tracking-widest border border-white/10 hover:bg-white/10 transition">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Catálogo -->
+  <div id="catalogModal" class="modal-overlay" onclick="closeModal(event, 'catalogModal')">
+    <div class="modal-content p-8" onclick="event.stopPropagation()">
+      <div class="flex justify-between items-center mb-8">
+        <h3 class="text-2xl font-serif text-gold" id="catalogModalTitle">Añadir Video</h3>
+        <button onclick="document.getElementById('catalogModal').classList.remove('active')" class="text-white/30 hover:text-white">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+      </div>
+      <form id="catalogForm" class="space-y-6">
+        <input type="hidden" id="catalogId">
+        <div class="space-y-2">
+          <label class="text-[9px] uppercase tracking-widest text-white/40 font-bold">Título de la Clase</label>
+          <input type="text" id="catTitle" class="w-full p-3 rounded-xl text-sm" placeholder="Ej. Técnica de Caminata Pro">
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="space-y-2">
+            <label class="text-[9px] uppercase tracking-widest text-white/40 font-bold">Categoría</label>
+            <select id="catCategory" class="w-full p-3 rounded-xl text-[10px] font-bold uppercase tracking-widest">
+              <option value="pasarela">Pasarela</option>
+              <option value="redes">Redes Sociales</option>
+              <option value="foto">Fotografía</option>
+              <option value="maquillaje">Maquillaje</option>
+              <option value="nutricion">Nutrición</option>
+            </select>
+          </div>
+          <div class="space-y-2">
+            <label class="text-[9px] uppercase tracking-widest text-white/40 font-bold">Subtítulo</label>
+            <input type="text" id="catSubtitle" class="w-full p-3 rounded-xl text-xs" placeholder="Cátedra Natasha Models">
+          </div>
+        </div>
+        <div class="space-y-2">
+          <label class="text-[9px] uppercase tracking-widest text-white/40 font-bold">URL de YouTube</label>
+          <input type="text" id="catVideo" class="w-full p-3 rounded-xl text-[10px] text-white/60" placeholder="https://www.youtube.com/watch?v=..." onchange="updateVideoPreview(this.value)">
+          <div class="mt-4 video-container shadow-2xl">
+            <iframe id="catVideoPreview" src="" class="w-full h-full pointer-events-none opacity-50"></iframe>
+          </div>
+        </div>
+        <div class="pt-6 flex gap-4">
+          <button type="button" onclick="saveCatalog()" class="gold-gradient flex-1 py-4 rounded-xl text-black font-bold uppercase text-[10px] tracking-widest">Guardar Video</button>
+          <button type="button" onclick="document.getElementById('catalogModal').classList.remove('active')" class="flex-1 bg-white/5 py-4 rounded-xl font-bold uppercase text-[10px] tracking-widest border border-white/10 hover:bg-white/10 transition">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // --- DATOS DE PRUEBA LOCALES (IN-MEMORY) ---
+    let localStaff = [
+      { id: '1', name: "Veronica Basso", role: "Pasarela & Redes", img: "https://genesispyme.github.io/Natasha-Models/img/f26.jpeg", category: "veronica" },
+      { id: '2', name: "Julián Basso", role: "Fotografía Profesional", img: "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&q=80&w=400", category: "foto" }
+    ];
+
+    let localCatalog = [
+      { id: '101', title: "Técnica de Caminata", subtitle: "Cátedra de Pasarela", videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", category: "pasarela" },
+      { id: '102', title: "Dominio de Ángulos", subtitle: "Cátedra de Fotografía", videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", category: "foto" }
+    ];
+
+    let currentBase64Image = null;
+
+    // --- RENDERIZADO ---
+    function renderStaff() {
+      const container = document.getElementById('staffList');
+      container.innerHTML = localStaff.map(t => `
+        <div class="admin-card p-6 flex items-center gap-6">
+          <div class="w-20 h-20 rounded-2xl overflow-hidden bg-white/5 shrink-0 border border-white/5 shadow-inner">
+            <img src="${t.img}" class="w-full h-full object-cover">
+          </div>
+          <div class="flex-1 overflow-hidden">
+            <h4 class="text-lg font-serif text-white truncate">${t.name}</h4>
+            <p class="text-[9px] uppercase font-bold text-gold tracking-widest mb-3">${t.role}</p>
+            <div class="flex gap-2">
+              <button onclick="openStaffModal('${t.id}')" class="bg-white/5 hover:bg-white/10 text-[8px] uppercase font-bold px-3 py-1.5 rounded-lg border border-white/10 transition">Editar</button>
+              <button onclick="handleDelete('staff', '${t.id}')" class="text-red-500/50 hover:text-red-500 text-[8px] uppercase font-bold px-3 py-1.5 transition">Eliminar</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+      lucide.createIcons();
+    }
+
+    function renderCatalog() {
+      const container = document.getElementById('catalogList');
+      container.innerHTML = localCatalog.map(item => `
+        <div class="admin-card p-4 flex gap-6 items-center">
+          <div class="w-32 aspect-video bg-black rounded-xl overflow-hidden shrink-0 border border-white/5">
+             <img src="https://img.youtube.com/vi/${getYoutubeId(item.videoUrl)}/mqdefault.jpg" class="w-full h-full object-cover opacity-60">
+          </div>
+          <div class="flex-1 overflow-hidden">
+            <span class="text-[8px] uppercase font-bold text-gold/60 tracking-widest block mb-1">${item.category}</span>
+            <h4 class="text-sm font-serif text-white truncate mb-3">${item.title}</h4>
+            <div class="flex gap-2">
+              <button onclick="openCatalogModal('${item.id}')" class="bg-white/5 hover:bg-white/10 text-[8px] uppercase font-bold px-3 py-1.5 rounded-lg border border-white/10 transition">Modificar</button>
+              <button onclick="handleDelete('catalog', '${item.id}')" class="text-red-500/50 hover:text-red-500 text-[8px] uppercase font-bold px-3 py-1.5 transition">Borrar</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+      lucide.createIcons();
+    }
+
+    // --- LÓGICA DE ARCHIVOS ---
+    window.handleFileSelect = (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      document.getElementById('fileName').innerText = `Archivo: ${file.name}`;
+      
+      reader.onload = (event) => {
+        currentBase64Image = event.target.result;
+        document.getElementById('staffPreview').src = currentBase64Image;
+      };
+      reader.readAsDataURL(file);
+    };
+
+    // --- LÓGICA DE MODALES ---
+    window.openStaffModal = (id = null) => {
+      const modal = document.getElementById('staffModal');
+      const form = document.getElementById('staffForm');
+      form.reset();
+      currentBase64Image = null;
+      document.getElementById('fileName').innerText = "";
+      document.getElementById('staffPreview').src = '';
+      
+      if (id) {
+        const item = localStaff.find(s => s.id === id);
+        document.getElementById('staffId').value = id;
+        document.getElementById('staffName').value = item.name;
+        document.getElementById('staffRole').value = item.role;
+        document.getElementById('staffCategory').value = item.category;
+        document.getElementById('staffPreview').src = item.img;
+        currentBase64Image = item.img;
+        document.getElementById('staffModalTitle').innerText = 'Editar Profesor';
+      } else {
+        document.getElementById('staffId').value = '';
+        document.getElementById('staffModalTitle').innerText = 'Nuevo Profesor';
+      }
+      modal.classList.add('active');
+    };
+
+    window.openCatalogModal = (id = null) => {
+      const modal = document.getElementById('catalogModal');
+      const form = document.getElementById('catalogForm');
+      form.reset();
+      document.getElementById('catVideoPreview').src = '';
+
+      if (id) {
+        const item = localCatalog.find(c => c.id === id);
+        document.getElementById('catalogId').value = id;
+        document.getElementById('catTitle').value = item.title;
+        document.getElementById('catSubtitle').value = item.subtitle;
+        document.getElementById('catCategory').value = item.category;
+        document.getElementById('catVideo').value = item.videoUrl;
+        updateVideoPreview(item.videoUrl);
+        document.getElementById('catalogModalTitle').innerText = 'Editar Video';
+      } else {
+        document.getElementById('catalogId').value = '';
+        document.getElementById('catalogModalTitle').innerText = 'Añadir Video';
+      }
+      modal.classList.add('active');
+    };
+
+    // --- ACCIONES (PRUEBAS LOCALES) ---
+    window.saveStaff = () => {
+      const id = document.getElementById('staffId').value;
+      const name = document.getElementById('staffName').value;
+      const role = document.getElementById('staffRole').value;
+      const category = document.getElementById('staffCategory').value;
+      
+      if (!name || !currentBase64Image) return alert("Nombre y Foto son obligatorios.");
+
+      if (id) {
+        // Editar existente
+        const index = localStaff.findIndex(s => s.id === id);
+        localStaff[index] = { id, name, role, category, img: currentBase64Image };
+      } else {
+        // Crear nuevo
+        localStaff.push({
+          id: Date.now().toString(),
+          name, role, category,
+          img: currentBase64Image
+        });
+      }
+
+      document.getElementById('staffModal').classList.remove('active');
+      renderStaff();
+    };
+
+    window.saveCatalog = () => {
+      const id = document.getElementById('catalogId').value;
+      const title = document.getElementById('catTitle').value;
+      const subtitle = document.getElementById('catSubtitle').value || "Cátedra Natasha Models";
+      const category = document.getElementById('catCategory').value;
+      const videoUrl = document.getElementById('catVideo').value;
+
+      if (!title || !videoUrl) return alert("Título y URL de Video obligatorios.");
+
+      if (id) {
+        const index = localCatalog.findIndex(c => c.id === id);
+        localCatalog[index] = { id, title, subtitle, category, videoUrl };
+      } else {
+        localCatalog.push({
+          id: Date.now().toString(),
+          title, subtitle, category, videoUrl
+        });
+      }
+
+      document.getElementById('catalogModal').classList.remove('active');
+      renderCatalog();
+    };
+
+    window.handleDelete = (type, id) => {
+      if (!confirm("¿Deseas eliminar este elemento?")) return;
+      
+      if (type === 'staff') localStaff = localStaff.filter(s => s.id !== id);
+      else localCatalog = localCatalog.filter(c => c.id !== id);
+      
+      renderStaff();
+      renderCatalog();
+    };
+
+    // --- HELPERS ---
+    window.closeModal = (e, id) => { if (e.target.id === id) document.getElementById(id).classList.remove('active'); };
+    window.updateVideoPreview = (val) => {
+      const id = getYoutubeId(val);
+      if (id) document.getElementById('catVideoPreview').src = `https://www.youtube.com/embed/${id}`;
+    };
+    function getYoutubeId(url) {
+      const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+      const match = url.match(regExp);
+      return (match && match[2].length === 11) ? match[2] : null;
+    }
+
+    // Inicializar vista
+    window.onload = () => {
+      renderStaff();
+      renderCatalog();
+      lucide.createIcons();
+      AOS.init({ duration: 1000, once: true });
+    };
+  </script>
+</body>
+</html>
